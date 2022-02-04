@@ -1,0 +1,32 @@
+{
+  "name": "saleschannel",
+  "version": "1.0.0",
+  "description": "sales channel",
+  "main": "server.js",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "mockserver": "^3.1.1"
+  },
+  "devDependencies": {
+    "mockserver-client": "^5.11.2",
+    "mockserver-node": "^5.11.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olsmca/SalesChannel.git"
+  },
+  "keywords": [
+    "nodejs",
+    "node"
+  ],
+  "author": "Olsmca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olsmca/SalesChannel/issues"
+  },
+  "homepage": "https://github.com/olsmca/SalesChannel#readme"
+}
