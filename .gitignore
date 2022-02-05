@@ -1,8 +1,55 @@
-# dependencies
-/mockServer/node_modules
+######################
+# Project Specific
+######################
+mock-server/node_modules/
 
-# testing
-/coverage
 
-# production
-/build
+######################
+# Gradle
+######################
+.gradle/
+/build/
+
+######################
+# Package Files
+######################
+*.jar
+*.war
+*.ear
+*.db
+
+######################
+# Visual Studio Code
+######################
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+######################
+# Mac OSX
+######################
+.DS_Store
+.svn
+
+######################
+# Directories
+######################
+/bin/
+/deploy/
+
+######################
+# Others
+######################
+*.class
+*.*~
+*~
+.merge_file*
+
+######################
+# Code coverage
+######################
+/coverage/
+/.nyc_output/

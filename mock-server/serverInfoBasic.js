@@ -168,5 +168,5 @@ mockserver.start_mockserver({
 // do something
 
 mockserver.stop_mockserver({
-                serverPort: 1080
+                serverPort: port
             });

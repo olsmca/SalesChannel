@@ -21,3 +21,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+task runServers(type: Exec) {
+    workingDir 'mock-server'
+    commandLine 'node', 'serverInfoBasic.js'
+}
+
+tasks.clean.dependsOn(":mock-server:npmInstall")
