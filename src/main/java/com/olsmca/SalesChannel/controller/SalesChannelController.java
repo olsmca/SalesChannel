@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ClientController {
+public class SalesChannelController {
 
     @Autowired
     ClientConsumerService clientConsumerService;  
@@ -27,7 +27,7 @@ public class ClientController {
     public ResponseEntity<Void> customerPotencial(@RequestBody final Client client) throws URISyntaxException{
       Instant inst1 = Instant.now();  
       System.out.println("inicio: "+inst1);
-      System.out.println("ID Client: "+client.getId());
+      System.out.println("ID Client: "+client.getDni());
         
       System.out.println(clientConsumerService.getInfoBasic(client));
       System.out.println(clientConsumerService.getCriminalRecord(client));
@@ -35,26 +35,13 @@ public class ClientController {
       System.out.println("Elapsed Time: "+ Duration.between(inst1, inst2).toString());
 
         //return new ResponseEntity<>(true?HttpStatus.OK:HttpStatus.FORBIDDEN);
+        
       return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PostMapping(value = "potencial")
+    @PostMapping(value = "prospect")
     public ResponseEntity<Void> potencialclient(@RequestBody final Client client) throws URISyntaxException{
-      Instant inst1 = Instant.now();  
-      System.out.println("inicio: "+inst1);
-      System.out.println("ID Client: "+client.getId());
-
-      clientConsumerService.getInfoClient(
-        client).subscribe(
-          value -> System.out.println(value));
       
-      // clientConsumerService.getCriminalInfo(
-      //   client).subscribe(
-      //     value -> System.out.println(value));
-
-      Instant inst2 = Instant.now();
-      System.out.println("Elapsed Time: "+ Duration.between(inst1, inst2).toString());
-
         //return new ResponseEntity<>(true?HttpStatus.OK:HttpStatus.FORBIDDEN);
       return new ResponseEntity<>(HttpStatus.OK);
     }
