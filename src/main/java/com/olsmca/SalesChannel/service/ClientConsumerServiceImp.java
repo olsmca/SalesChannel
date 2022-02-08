@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import com.olsmca.SalesChannel.model.Client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,8 +16,8 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class ClientConsumerServiceImp implements ClientConsumerService{
-  private static final String BASE_URL_INFO_BASIC = "http://localhost:8080/infocustomer";
-  private static final String BASE_URL_CRIMINAL_RECORD = "http://localhost:8081/criminalrecord";
+  private static final String BASE_URL_INFO_BASIC = "http://127.0.0.1:8081/nationalregistry/";
+  private static final String BASE_URL_CRIMINAL_RECORD = "http://127.0.0.1:8081/criminalrecord/";
   
   @Autowired
   private RestTemplate restTemplate;
@@ -50,13 +51,13 @@ public class ClientConsumerServiceImp implements ClientConsumerService{
     
     // WebClient webClient = WebClient.create(BASE_URL_INFO_BASIC);
     // Flux<Client> cl =webClient.get().retrieve().bodyToFlux(Client.class);
-    return webClient.post().uri(BASE_URL_INFO_BASIC).body(Mono.just(client), Client.class).retrieve().bodyToMono(Client.class);
+    return webClient.get().uri(BASE_URL_INFO_BASIC+client.getDni()).accept(MediaType.APPLICATION_JSON).retrieve().bodyToMono(Client.class); 
   }
 
   @Override
   public Mono<Client> getCriminalInfo(Client client) {
     // WebClient webClient = WebClient.create(BASE_URL_CRIMINAL_RECORD);
     // Flux<Client> cl =webClient.get().retrieve().bodyToFlux(Client.class);
-    return webClient.post().uri(BASE_URL_CRIMINAL_RECORD).body(Mono.just(client), Client.class).retrieve().bodyToMono(Client.class);
+    return webClient.get().uri(BASE_URL_CRIMINAL_RECORD+client.getDni()).accept(MediaType.APPLICATION_JSON).retrieve().bodyToMono(Client.class); 
   }
 }

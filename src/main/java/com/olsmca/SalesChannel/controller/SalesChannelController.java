@@ -6,6 +6,7 @@ import java.time.Instant;
 
 import com.olsmca.SalesChannel.model.Client;
 import com.olsmca.SalesChannel.service.ClientConsumerService;
+import com.olsmca.SalesChannel.service.SalesChannelService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class SalesChannelController {
 
     @Autowired
-    ClientConsumerService clientConsumerService;  
+    ClientConsumerService clientConsumerService;
+
+    @Autowired
+    SalesChannelService salesChannelService;
 
     @PostMapping(value = "potencialclient")
     public ResponseEntity<Void> customerPotencial(@RequestBody final Client client) throws URISyntaxException{
@@ -42,7 +46,8 @@ public class SalesChannelController {
     @PostMapping(value = "prospect")
     public ResponseEntity<Void> potencialclient(@RequestBody final Client client) throws URISyntaxException{
       
-        //return new ResponseEntity<>(true?HttpStatus.OK:HttpStatus.FORBIDDEN);
+      salesChannelService.verifyProspect(client);
+
       return new ResponseEntity<>(HttpStatus.OK);
     }
 }

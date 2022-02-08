@@ -6,9 +6,11 @@ import java.time.Instant;
 import com.olsmca.SalesChannel.model.Client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import reactor.core.publisher.Flux;
 
+@Service
 public class SalesChannelServiceImp implements SalesChannelService{
 
     @Autowired
@@ -21,8 +23,8 @@ public class SalesChannelServiceImp implements SalesChannelService{
       System.out.println("ID Client: "+client.getDni());
 
       Flux<Client> flux = Flux.merge(clientConsumerService.getInfoClient(client),clientConsumerService.getCriminalInfo(client));
-
-      System.out.println(flux);
+      //clientConsumerService.getInfoClient(client);
+      flux.subscribe(System.out::println);
 
       Instant inst2 = Instant.now();
       System.out.println("Elapsed Time: "+ Duration.between(inst1, inst2).toString());
